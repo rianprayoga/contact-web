@@ -1,0 +1,4 @@
+graft mycontact/static
+graft mycontact/templates
+graft mycontact/model
+global-exclude *.pyc

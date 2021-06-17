@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}
+  {{g.user.username}}
+{% endblock %}
+
+{% block content %}
+  </p>
+  <p class="lead">
+  Edit Contact</p>
+  <!--  -->
+  <form class="" action="{{url_for('manage_contact.edit_contact', contact_id=contact.id)}}" method="post">
+    <div class="form-floating mb-3">
+      <input name="name" type="text" class="form-control" id="floatingInput" value = "{{ contact.contact_name}}"  required>
+      <label for="floatingInput">Name</label>
+    </div>
+    <div class="form-floating">
+        <input name="number" type="text" class="form-control" id="floatingInput" value ="{{ contact.contact_number}}"  required>
+        <label for="floatingPassword">Phone Number</label>
+    </div>
+    <button class="btn btn-primary mt-3" type="submit">Edit</button>
+  </form>
+{%endblock%}

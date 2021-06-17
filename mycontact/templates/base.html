@@ -1,0 +1,117 @@
+<!doctype html>
+<head>
+  <title>
+    {% if g.user %}
+      {% block title %}{% endblock %}'s Contact
+    {%else%}
+      My-Contact
+    {%endif%}
+  </title>
+  <script src="{{ url_for('static', filename='bootstrap-5.0.0-beta3-dist/js/bootstrap.bundle.min.js') }}"></script>
+  <link href="{{ url_for('static', filename='bootstrap-5.0.0-beta3-dist/css/bootstrap.min.css') }}" rel="stylesheet">
+</head>
+<body>
+  <!-- <header class="p-3 bg-dark text-white">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+        </ul>
+        <div class="text-end">
+          {% if g.user %}
+
+          {% else %}
+            <button type="button" class="btn btn-outline-light me-2">Login</button>
+            <button type="button" class="btn btn-warning">Sign-up</button>
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+  </header> -->
+  <header class="py-3 border-bottom">
+    <div class="container d-flex flex-wrap justify-content-center">
+      <a href="#" class="d-flex align-items-center  me-auto text-dark text-decoration-none">
+        <span class="fs-4">Safe Contact</span></a>
+      {% if g.user %}
+        <a href="{{ url_for('auth.logout') }}"><button  type="button" class="btn btn-warning">Log out</button></a>
+      {% else %}
+        <a href="{{ url_for('auth.login') }}"><button type="button" class="btn btn-outline-primary me-2">Log in</button></a>
+        <a href="{{ url_for('auth.register') }}"><button  type="button" class="btn btn-warning">Register</button></a>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="container">
+    {% for message in get_flashed_messages() %}
+    </p>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% block content %}{%endblock%}
+    <!-- <p>
+      <h6>
+        Recently Added
+      </h6>
+    </p>
+    <div class="row">
+      {% for _ in range(3) %}
+        <div class="col-4">
+          <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+              <div class="card-body">
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+              </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <p>
+    <div class="d-flex">
+
+            <div class="me-auto"> <h6>All Contacts</h6></div>
+            <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownRightMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+              End-aligned menu
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownRightMenuButton" style="">
+              <li><h6 class="dropdown-header">Dropdown header</h6></li>
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Separated link</a></li>
+            </ul>
+          </div>
+        </div>
+    </p>
+    <table class="table table-sm table-bordered">
+        <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+              </tr>
+            </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+          </tbody>
+        </table> -->
+  </div>
+</body>

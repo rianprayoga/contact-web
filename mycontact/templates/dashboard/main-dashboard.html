@@ -1,0 +1,74 @@
+<!-- <p>
+  <h6>
+    Recently Added
+  </h6>
+</p>
+<div class="row">
+  {% for _ in range(3) %}
+    <div class="col-4">
+      <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+          <div class="card-body">
+              <a href="#" class="card-link">Card link</a>
+              <a href="#" class="card-link">Another link</a>
+          </div>
+      </div>
+    </div>
+  {% endfor %}
+</div> -->
+{% extends 'base.html' %}
+{% block title %}
+  {{g.user.username}}
+{% endblock %}
+{% block content %}
+<p>
+<div class="d-flex">
+        <div class="me-auto"> <h6>All Contacts</h6></div>
+        <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownRightMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+          Action
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownRightMenuButton" style="">
+          <!-- <li><h6 class="dropdown-header">Dropdown header</h6></li> -->
+          <li><a class="dropdown-item" href="{{url_for('manage_contact.add_contact')}}">Add new contact</a></li>
+          <li><a class="dropdown-item" href="#">Search contact </a></li>
+          <!-- <li><a class="dropdown-item" href="#">Another action</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#">Separated link</a></li> -->
+        </ul>
+      </div>
+    </div>
+</p>
+{% if contacts is not none %}
+<table class="table table-sm table-bordered">
+    <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+      <tbody>
+        {%for c in contacts%}
+        <tr>
+          <th scope="row">1</th>
+          <td>{{c.contact_name}}</td>
+          <td>{{c.contact_number}}</td>
+          <td><a href="{{url_for('manage_contact.edit_contact', contact_id = c.id)}}"> Edit</a> ,
+            <a href="{{url_for('manage_contact.delete_contact', contact_id = c.id, user_id = g.user.id)}}">Delete</a>
+          </td>
+        </tr>
+        {%endfor%}
+
+
+      </tbody>
+</table>
+{% else %}
+  Hello {{g.user.username}}, you have no caontact
+{% endif %}
+
+{%endblock%}
